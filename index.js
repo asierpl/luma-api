@@ -53,7 +53,7 @@ app.post('/' , async ( req , res , next )=>{
 
 app.get('/inicio' , async ( req , res , next)=>{
 
-    const buscar = await Inicio.find()
+    const buscar = await Inicio.findOne()
 
     res.json(buscar)
 })
