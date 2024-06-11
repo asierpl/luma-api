@@ -22,6 +22,14 @@ const usuarioSchema = new mongoose.Schema(
 )
 const Usuario = mongoose.model('Usuario' , usuarioSchema)
 
+const inicioSchema = new mongoose.Schema(
+    {texto : String },
+    {collection : 'inicio'}
+)
+const Inicio = mongoose.model('Inicio' , inicioSchema)
+
+
+
 app.use( cors() )
 app.use( express.json() )
 app.use( express.urlencoded({ extended : false }))
@@ -42,5 +50,13 @@ app.post('/' , async ( req , res , next )=>{
 
     res.json(buscar)
 })
+
+app.get('/inicio' , async ( req , res , next)=>{
+
+    const buscar = await Inicio.find()
+
+    res.json(buscar)
+})
+
 
 app.listen( 3000 , ()=> console.log('Iniciando API') )
