@@ -28,13 +28,17 @@ const inicioSchema = new mongoose.Schema(
 )
 const Inicio = mongoose.model('Inicio' , inicioSchema)
 
-const headerNavShema = new mongoose.Schema(
-    {href : String , title: String },
-    {collection : 'headerNav'}
+// const headerNavShema = new mongoose.Schema(
+//     {href : String , title: String },
+//     {collection : 'headerNav'}
+// )
+// const HeaderNav = mongoose.model('HeaderNav' , headerNavShema)
+
+const librosSchema = new mongoose.Schema(
+    {nombre : String , autor: String , fecha : String },
+    {collection : 'libros'}
 )
-const HeaderNav = mongoose.model('HeaderNav' , headerNavShema)
-
-
+const Libros = mongoose.model('Libros' , librosSchema)
 
 app.use( cors() )
 app.use( express.json() )
@@ -71,12 +75,27 @@ app.get('/inicio' , async ( req , res , next)=>{
     }catch(error){
         next(error)
     }
-    
-    
 
-    
+})
 
-   
+app.get('/libros' , async ( req , res , next)=>{
+
+    const buscar = await Libros.find()
+
+    res.json(buscar)
+})
+
+app.post('/libros' , async ( req , res , next )=> {
+
+    const { nombre , autor , fecha } = req.body
+
+    const nuevo = new Libros({ nombre , autor , fecha })
+
+    await nuevo.save()
+
+    const newLibro = await Libros.find()
+
+    res.status(201).json(newLibro)
 })
 
 
