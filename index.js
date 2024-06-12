@@ -118,7 +118,20 @@ app.delete('/libros/:id' , async (req , res , next)=>{
     
 })
 
+app.put('/libros/:id' , async (req, res, next) => {
 
+    try {
+      const { id } = req.params
+      const { nombre, autor , fecha } = req.body
 
+      await Libros.findByIdAndUpdate(id, { nombre, autor , fecha })
+      const editarLibro = await Libros.find()
+
+      res.status(200).json(editarLibro)
+    } catch (error) {
+      next(error)
+    }
+}
+)
 
 app.listen( 3000 , ()=> console.log('Iniciando API') )
