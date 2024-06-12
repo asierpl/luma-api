@@ -62,11 +62,11 @@ app.get('/inicio' , async ( req , res , next)=>{
     try{
 
         const buscar    = await Inicio.findOne()
-        const headerNav = await HeaderNav.find()
+        // const headerNav = await HeaderNav.find()
 
-        const datos = {buscar , headerNav}
+        // const datos = {buscar , headerNav}
 
-        res.status(200).json(datos)
+        res.status(200).json(buscar)
 
     }catch(error){
         next(error)
