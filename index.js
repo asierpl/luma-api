@@ -28,6 +28,12 @@ const inicioSchema = new mongoose.Schema(
 )
 const Inicio = mongoose.model('Inicio' , inicioSchema)
 
+const headerNavShema = new mongoose.Schema(
+    {href : String , title: String },
+    {collection : 'headerNav'}
+)
+const HeaderNav = mongoose.model('HeaderNav' , headerNavShema)
+
 
 
 app.use( cors() )
@@ -53,9 +59,24 @@ app.post('/' , async ( req , res , next )=>{
 
 app.get('/inicio' , async ( req , res , next)=>{
 
-    const buscar = await Inicio.findOne()
+    try{
 
-    res.json(buscar)
+        const buscar    = await Inicio.findOne()
+        const headerNav = await HeaderNav.find()
+
+        const datos = {buscar , headerNav}
+
+        res.status(200).json(datos)
+
+    }catch(error){
+        next(error)
+    }
+    
+    
+
+    
+
+   
 })
 
 
