@@ -98,5 +98,27 @@ app.post('/libros' , async ( req , res , next )=> {
     res.status(201).json(newLibro)
 })
 
+app.delete('/libros/:id' , async (req , res , next)=>{
+
+    try { 
+
+        const {id} = req.params
+
+        await Libros.findByIdAndDelete(id)
+
+        const libroEliminado = await Libros.find()
+        
+        res.status(200).json(libroEliminado)
+
+    }catch(error){
+
+        console.log(error)
+        res.status(500).json({error : 'Error interno del servidor'})
+    }
+    
+})
+
+
+
 
 app.listen( 3000 , ()=> console.log('Iniciando API') )
