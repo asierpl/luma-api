@@ -6,11 +6,13 @@ const usuarioSchema = new mongoose.Schema(
 )
 const Usuario = mongoose.model('Usuario' , usuarioSchema)
 
+
 const inicioSchema = new mongoose.Schema(
-    {src : String , alt : String},
+    {titulo : String , subtitulo : String},
     {collection : 'inicio'}
 )
 const Inicio = mongoose.model('Inicio' , inicioSchema)
+
 
 const carrouselSchema = new mongoose.Schema(
     {src : String , alt : String},
@@ -18,11 +20,13 @@ const carrouselSchema = new mongoose.Schema(
 )
 const Carrousel = mongoose.model('Carrousel' , carrouselSchema)
 
-// const headerNavShema = new mongoose.Schema(
-//     {href : String , title: String },
-//     {collection : 'headerNav'}
-// )
-// const HeaderNav = mongoose.model('HeaderNav' , headerNavShema)
+
+const websSchema = new mongoose.Schema(
+    {title : String , href : String , parrafo : String},
+    {collection : 'webs'}
+)
+const Webs = mongoose.model('Webs' , websSchema)
+
 
 const librosSchema = new mongoose.Schema(
     {nombre : String , autor: String , fecha : String },
@@ -30,9 +34,12 @@ const librosSchema = new mongoose.Schema(
 )
 const Libros = mongoose.model('Libros' , librosSchema)
 
+
+
 module.exports = {
     Usuario,
     Inicio,
     Libros,
-    Carrousel
+    Carrousel,
+    Webs
 }
