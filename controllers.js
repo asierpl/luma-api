@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const { Usuario , Inicio , Libros } = require('./schema')
+const { Usuario , Inicio , Libros , Carrousel} = require('./schema')
 
 const getUsuarios = async ( req , res , next)=>{
 
@@ -22,12 +22,11 @@ const getInicio = async ( req , res , next)=>{
 
     try{
 
-        const buscar    = await Inicio.findOne()
-        // const headerNav = await HeaderNav.find()
+        const inicio    = await Inicio.findOne()
+        const carrousel = await Carrousel.find()
 
-        // const datos = {buscar , headerNav}
-
-        res.status(200).json(buscar)
+        const total = {inicio , carrousel}
+        res.status(200).json(total)
 
     }catch(error){
         next(error)

@@ -7,10 +7,16 @@ const usuarioSchema = new mongoose.Schema(
 const Usuario = mongoose.model('Usuario' , usuarioSchema)
 
 const inicioSchema = new mongoose.Schema(
-    {texto : String },
+    {src : String , alt : String},
     {collection : 'inicio'}
 )
 const Inicio = mongoose.model('Inicio' , inicioSchema)
+
+const carrouselSchema = new mongoose.Schema(
+    {src : String , alt : String},
+    {collection : 'carrousel'}
+)
+const Carrousel = mongoose.model('Carrousel' , carrouselSchema)
 
 // const headerNavShema = new mongoose.Schema(
 //     {href : String , title: String },
@@ -27,5 +33,6 @@ const Libros = mongoose.model('Libros' , librosSchema)
 module.exports = {
     Usuario,
     Inicio,
-    Libros
+    Libros,
+    Carrousel
 }
